@@ -1,33 +1,44 @@
-<h1>Listing reviews</h1>
-
-<table>
+<%- model_class = Review -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Rest</th>
-      <th>User</th>
-      <th>Review text</th>
-      <th>Rating</th>
-      <th>Sentiment</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:rest_id) %></th>
+      <th><%= model_class.human_attribute_name(:user) %></th>
+      <th><%= model_class.human_attribute_name(:review_text) %></th>
+      <th><%= model_class.human_attribute_name(:rating) %></th>
+      <th><%= model_class.human_attribute_name(:sentiment) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @reviews.each do |review| %>
       <tr>
+        <td><%= link_to review.id, review_path(review) %></td>
         <td><%= review.rest_id %></td>
         <td><%= review.user %></td>
         <td><%= review.review_text %></td>
         <td><%= review.rating %></td>
         <td><%= review.sentiment %></td>
-        <td><%= link_to 'Show', review %></td>
-        <td><%= link_to 'Edit', edit_review_path(review) %></td>
-        <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l review.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_review_path(review), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      review_path(review),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Review', new_review_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_review_path,
+            :class => 'btn btn-primary' %>

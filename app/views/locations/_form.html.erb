@@ -1,29 +1,12 @@
-<%= form_for(@location) do |f| %>
-  <% if @location.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+<%= simple_form_for @location, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :loc_id %>
+  <%= error_span(@location[:loc_id]) %>
+  <%= f.input :loc_name %>
+  <%= error_span(@location[:loc_name]) %>
+  <%= f.input :zone_id %>
+  <%= error_span(@location[:zone_id]) %>
 
-      <ul>
-      <% @location.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :loc_id %><br>
-    <%= f.text_field :loc_id %>
-  </div>
-  <div class="field">
-    <%= f.label :loc_name %><br>
-    <%= f.text_field :loc_name %>
-  </div>
-  <div class="field">
-    <%= f.label :zone_id %><br>
-    <%= f.text_field :zone_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                locations_path, :class => 'btn btn-default' %>
 <% end %>

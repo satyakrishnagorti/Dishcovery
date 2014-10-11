@@ -1,37 +1,16 @@
-<%= form_for(@review) do |f| %>
-  <% if @review.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+<%= simple_form_for @review, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :rest_id %>
+  <%= error_span(@review[:rest_id]) %>
+  <%= f.input :user %>
+  <%= error_span(@review[:user]) %>
+  <%= f.input :review_text %>
+  <%= error_span(@review[:review_text]) %>
+  <%= f.input :rating %>
+  <%= error_span(@review[:rating]) %>
+  <%= f.input :sentiment %>
+  <%= error_span(@review[:sentiment]) %>
 
-      <ul>
-      <% @review.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :rest_id %><br>
-    <%= f.text_field :rest_id %>
-  </div>
-  <div class="field">
-    <%= f.label :user %><br>
-    <%= f.text_field :user %>
-  </div>
-  <div class="field">
-    <%= f.label :review_text %><br>
-    <%= f.text_field :review_text %>
-  </div>
-  <div class="field">
-    <%= f.label :rating %><br>
-    <%= f.text_field :rating %>
-  </div>
-  <div class="field">
-    <%= f.label :sentiment %><br>
-    <%= f.text_field :sentiment %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                reviews_path, :class => 'btn btn-default' %>
 <% end %>
