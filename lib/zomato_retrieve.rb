@@ -55,6 +55,19 @@ json_resp['results'].each { |restaurant|
 }
 =end
 
-http = Curl.get("https://api.zomato.com/v1/search.json?subzone_id=5112") do|http|
+http = Curl.get("https://api.zomato.com/v1/subzones.json?city_id=4") do|http|
   http.headers['X-Zomato-API-Key'] = '7749b19667964b87a3efc739e254ada2'
-  end
+end
+json_resp = JSON.parse(http.body_str)
+json_resp['subzones'].each { |location|
+ print  location['subzone']['name']
+ print " --> "
+ print location['subzone']['subzone_id']
+ print "\n"
+  each_loc = Location.new
+  each_loc.loc_id = location['subzone']['subzone_id']
+  each_loc.loc_name = location['subzone']['name']
+  each_loc.zone_id = location['subzone']['zone_id']
+  each_loc.save
+}
+
