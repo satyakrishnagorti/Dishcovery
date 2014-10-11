@@ -1,5 +1,3 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
 
 <!-- <%= check_box_tag 'accept' %> Accept -->
 <!--
@@ -14,18 +12,24 @@
 </form>
 -->
 
-<%=  %>
+
 
 <%= form_tag('results')  do  %>
 
- <!--   <%= text_field_tag 'key',nil, placeholder: "Discover the Twitter sentiment for a product or brand..." %>
-    -->
-
-    <div id="cols">
-    <%= Location.find_each do |a|%>
-        <%= check_box_tag a.loc_name, a.loc_name %> <%= a.loc_name%> </br>
-    <% end%>
+    <center><h2>Cuisines</h2></center>
+    <div id="cols" class="well" >
+      <% @cuisines.each do |a|%>
+         <font size="4"> <%= radio_button_tag a,a %> <%= a%></font> </br>
+      <% end %>
     </div>
-    <%= submit_tag 'Search', class: "button" %>
+
+    <center><h2>Locations</h2></center>
+    <div id="cols" class="well">
+      <%= Location.find_each do |a|%>
+          <font size="4" ><%= check_box_tag a.loc_name, a.loc_name %> <%= a.loc_name%></font> </br>
+      <% end%>
+    </div>
+
+    <%= submit_tag 'Search', class: "btn btn-primary btn-lg btn-block" %>
 
 <% end %>

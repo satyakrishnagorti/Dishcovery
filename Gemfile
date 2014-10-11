@@ -50,4 +50,5 @@ gem 'sentimental'
 gem 'twitter'
 gem 'curb'
 gem 'json'
+gem 'chartkick'
 

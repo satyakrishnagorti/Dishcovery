@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home
+    @cuisines = ['Chinese', 'North Indian', 'South Indian', 'Fast Food', 'Ice Cream', 'Bakery', 'Drinks Only']
   end
 
   def results
@@ -7,40 +8,44 @@ class PagesController < ApplicationController
     @value = params[:key]
     puts @value
 =end
-    @locations = []
-    @restaurants = []
-    @r_names = []
+    @cuisines = ['Chinese', 'North Indian', 'South Indian', 'Fast Food', 'Ice Cream', 'Bakery', 'Drinks Only']
     @selected_cuisine = ""
-    @cuisines = ['Chinese', 'Bakery']
     @cuisines.each do |x|
       if x == params[x]
         @selected_cuisine = x
+        puts "------------------------------------------"
         puts @selected_cuisine
         break
       end
     end
-    @selected_cuisine = 'Chinese'
+    @locations = []
+    @r_names = []
     Location.find_each do |a|
       if a.loc_name == params[a.loc_name]
         @locations.append a.loc_name
-=begin
-        restaurants = Restaurant.where('loc_name', params[a.loc_name])
-        restaurants.find_each do |b|
-          @restaurants.append b.name
-        end
-=end
-
-
-        Restaurant.find_each do |c|
-          if c.location == params[a.loc_name]
-            @restaurants.append c
-          end
-        end
 
       end
     end
 
-    @res = algorithm(["Brigade Road","BTM"],@selected_cuisinee)
+    @res = algorithm(@locations,@selected_cuisine)
+    @location_costs = {}
+    @location_popularity = {}
+
+    @res.each do |key, arr|
+      sum = 0
+
+      arr.each do |a|
+        a = a.gsub(/[']/,"''")
+        cost = Restaurant.where("location == '"+key+"' and name == '"+a+"'").first.cost_for_two.to_i
+        sum += cost
+      end
+
+      avg = sum/8
+      @location_costs[key] = avg
+      @location_popularity[key] = rand(40) + 50
+
+
+    end
 
   end
 
@@ -50,18 +55,19 @@ class PagesController < ApplicationController
       rest_in_loc = []
       selected_rest = Restaurant.where("location == '"+each_loc+ "' and cuisines like '%"+cuisine+"%'").limit(8).each do |x|
         puts x.name
-
-        if x.cuisines.include? each_loc
-          rest_in_loc.append x
+        rest_in_loc.append x.name
         end
-      end
+
       rests[each_loc] = rest_in_loc
     end
+
+    puts rests
     return rests
+  end
+end
 
-=begin
 
-
+def get_score
     base_score = 100
     ret_cost=[]
     ret_loc = []
@@ -120,9 +126,8 @@ class PagesController < ApplicationController
       print "--->"
       puts value
     end
-=end
-  end
- end
+
+end
 
 
 

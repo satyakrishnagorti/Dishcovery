@@ -1,4 +1,12 @@
-<% @restaurants.each do |a| %>
-    <%= a.name %> </br></br>
-<% end %>
 
+
+
+<%= javascript_include_tag "//www.google.com/jsapi" , "chartkick" %>
+
+<h2>Cost for Two vs Locations</h2>
+
+<div class="well"><%= bar_chart(@location_costs)%></div>
+
+<h2>Popularity of <%= @selected_cuisine %> vs Locations</h2>
+
+<div class="well"><%= bar_chart(@location_popularity)%></div>
