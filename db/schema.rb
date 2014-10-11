@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011100158) do
+ActiveRecord::Schema.define(version: 20141011153246) do
+
+  create_table "cuisines", force: true do |t|
+    t.string   "cuisine_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "locations", force: true do |t|
     t.string   "loc_id"

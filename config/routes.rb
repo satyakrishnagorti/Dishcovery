@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :cuisines
+
   get 'pages/home'
 
   get 'pages/results'
