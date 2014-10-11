@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'pages/home'
+
+  get 'pages/results'
+
+  post 'pages/results'
+
   resources :review_counts
 
   resources :reviews

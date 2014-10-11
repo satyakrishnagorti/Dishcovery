@@ -1,0 +1,27 @@
+<h1>Pages#home</h1>
+<p>Find me in app/views/pages/home.html.erb</p>
+
+<!-- <%= check_box_tag 'accept' %> Accept -->
+<!--
+
+<form role="form">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+-->
+
+
+<%= form_tag('results')  do  %>
+
+ <!--   <%= text_field_tag 'key',nil, placeholder: "Discover the Twitter sentiment for a product or brand..." %>
+
+
+-->
+    <%= check_box_tag 'rock', 'rock music' %> Rock Music </br>
+    <%= submit_tag 'Search', class: "button" %>
+
+<% end %>
