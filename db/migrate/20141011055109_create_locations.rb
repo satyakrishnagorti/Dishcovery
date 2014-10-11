@@ -4,7 +4,6 @@ class CreateLocations < ActiveRecord::Migration
       t.string :loc_id
       t.string :loc_name
       t.string :zone_id
-
       t.timestamps
     end
   end

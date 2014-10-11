@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+#cols {
+    -moz-column-count: 5;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 5;
+    -webkit-column-gap: 20px;
+    column-count: 5;
+    column-gap: 20px;
+}

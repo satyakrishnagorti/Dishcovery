@@ -1,2 +1,3 @@
-<h1>Pages#results</h1>
-<p>Find me in app/views/pages/results.html.erb</p>
+<% @restaurants.each do |a| %>
+    <%= a.name %> </br></br>
+<% end %>

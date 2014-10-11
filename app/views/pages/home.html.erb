@@ -14,14 +14,18 @@
 </form>
 -->
 
+<%=  %>
 
 <%= form_tag('results')  do  %>
 
  <!--   <%= text_field_tag 'key',nil, placeholder: "Discover the Twitter sentiment for a product or brand..." %>
+    -->
 
-
--->
-    <%= check_box_tag 'rock', 'rock music' %> Rock Music </br>
+    <div id="cols">
+    <%= Location.find_each do |a|%>
+        <%= check_box_tag a.loc_name, a.loc_name %> <%= a.loc_name%> </br>
+    <% end%>
+    </div>
     <%= submit_tag 'Search', class: "button" %>
 
 <% end %>

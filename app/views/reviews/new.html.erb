@@ -3,3 +3,12 @@
   <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
 <%= render :partial => 'form' %>
+
+<form action="">
+  <input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
+  <input type="checkbox" name="vehicle" value="Car">I have a car
+</form>
+
+<%= check_box_tag 'accept' %> Accept
+
+<%= f.check_box :hobby, {:class => "myclass", :style => "mystyle"}, "hockeys" %>
