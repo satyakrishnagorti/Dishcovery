@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011055235) do
+ActiveRecord::Schema.define(version: 20141011100158) do
 
   create_table "locations", force: true do |t|
     t.string   "loc_id"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 20141011055235) do
     t.string   "twitter_handle"
     t.string   "cost_for_two"
     t.string   "rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "review_counts", force: true do |t|
+    t.string   "rest_id"
+    t.integer  "rev_count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

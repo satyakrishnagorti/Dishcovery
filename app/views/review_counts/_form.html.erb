@@ -1,0 +1,8 @@
+<%= simple_form_for @review_count, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :rest_id %>
+  <%= error_span(@review_count[:rest_id]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                review_counts_path, :class => 'btn btn-default' %>
+<% end %>
