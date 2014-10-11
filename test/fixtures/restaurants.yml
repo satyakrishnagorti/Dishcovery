@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rest_id: MyString
+  name: MyString
+  location: MyString
+  loc_id: MyString
+  zone_name: MyString
+  zone_id: MyString
+  city_name: MyString
+  city_id: MyString
+  cuisines: MyString
+  twitter_handle: MyString
+  cost_for_two: MyString
+  rating: MyString
+
+two:
+  rest_id: MyString
+  name: MyString
+  location: MyString
+  loc_id: MyString
+  zone_name: MyString
+  zone_id: MyString
+  city_name: MyString
+  city_id: MyString
+  cuisines: MyString
+  twitter_handle: MyString
+  cost_for_two: MyString
+  rating: MyString

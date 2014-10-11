@@ -1,0 +1,30 @@
+<%= simple_form_for @restaurant, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :rest_id %>
+  <%= error_span(@restaurant[:rest_id]) %>
+  <%= f.input :name %>
+  <%= error_span(@restaurant[:name]) %>
+  <%= f.input :location %>
+  <%= error_span(@restaurant[:location]) %>
+  <%= f.input :loc_id %>
+  <%= error_span(@restaurant[:loc_id]) %>
+  <%= f.input :zone_name %>
+  <%= error_span(@restaurant[:zone_name]) %>
+  <%= f.input :zone_id %>
+  <%= error_span(@restaurant[:zone_id]) %>
+  <%= f.input :city_name %>
+  <%= error_span(@restaurant[:city_name]) %>
+  <%= f.input :city_id %>
+  <%= error_span(@restaurant[:city_id]) %>
+  <%= f.input :cuisines %>
+  <%= error_span(@restaurant[:cuisines]) %>
+  <%= f.input :twitter_handle %>
+  <%= error_span(@restaurant[:twitter_handle]) %>
+  <%= f.input :cost_for_two %>
+  <%= error_span(@restaurant[:cost_for_two]) %>
+  <%= f.input :rating %>
+  <%= error_span(@restaurant[:rating]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                restaurants_path, :class => 'btn btn-default' %>
+<% end %>

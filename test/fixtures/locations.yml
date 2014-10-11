@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  loc_id: MyString
+  loc_name: MyString
+  zone_id: MyString
+
+two:
+  loc_id: MyString
+  loc_name: MyString
+  zone_id: MyString
