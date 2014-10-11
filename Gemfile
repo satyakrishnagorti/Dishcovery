@@ -48,4 +48,6 @@ gem 'simple_form'
 
 gem 'sentimental'
 gem 'twitter'
+gem 'curb'
+gem 'json'
 
