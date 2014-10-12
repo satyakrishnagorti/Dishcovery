@@ -1,12 +1,32 @@
 
-
-
+<div id="loader">
 <%= javascript_include_tag "//www.google.com/jsapi" , "chartkick" %>
+
+
+
+<div style="float:left;"><h2>Popularity of <%= @selected_cuisine %> vs Locations</h2></div>
+
+  <a href="#TopRestaurants" style="float:right;" class="btn btn-lg btn-success">Check Top Restaurants</a>
+<div style="clear:both;"></div>
+<div class="well" style="margin-top: 10px;"><%= bar_chart(@location_popularity)%></div>
 
 <h2>Cost for Two vs Locations</h2>
 
 <div class="well"><%= bar_chart(@location_costs)%></div>
 
-<h2>Popularity of <%= @selected_cuisine %> vs Locations</h2>
+</div>
 
-<div class="well"><%= bar_chart(@location_popularity)%></div>
+
+
+<div name="TopRestaurants" id="TopRestaurants" style="margin-top:200px">
+  <% @res.each do |key,value| %>
+  <h2><%=key%></h2>
+      <table class="table table-striped well">
+        <tr>
+          <% value.each do |a| %>
+          <td><%=a%></td>
+          <% end %>
+        </tr>
+      </table>
+  <% end %>
+</div>

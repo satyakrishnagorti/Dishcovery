@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'pages/results'
 
   post 'pages/results'
+  get 'pages/top_restaurants'
 
   resources :review_counts
 

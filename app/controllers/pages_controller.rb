@@ -3,6 +3,29 @@ class PagesController < ApplicationController
     @cuisines = ['Chinese', 'North Indian', 'South Indian', 'Fast Food', 'Ice Cream', 'Bakery', 'Drinks Only']
   end
 
+  def top_restaurants
+
+    @cuisines = ['Chinese', 'North Indian', 'South Indian', 'Fast Food', 'Ice Cream', 'Bakery', 'Drinks Only']
+    @selected_cuisine = ""
+    @cuisines.each do |x|
+      if x == params[x]
+        @selected_cuisine = x
+        break
+      end
+    end
+
+    @locations = []
+    @r_names = []
+    Location.find_each do |a|
+      if a.loc_name == params[a.loc_name]
+        @locations.append a.loc_name
+
+      end
+    end
+    @res = algorithm(@locations,@selected_cuisine)
+
+  end
+
   def results
 =begin
     @value = params[:key]
@@ -13,8 +36,6 @@ class PagesController < ApplicationController
     @cuisines.each do |x|
       if x == params[x]
         @selected_cuisine = x
-        puts "------------------------------------------"
-        puts @selected_cuisine
         break
       end
     end
@@ -30,7 +51,7 @@ class PagesController < ApplicationController
     @res = algorithm(@locations,@selected_cuisine)
     @location_costs = {}
     @location_popularity = {}
-
+    @location_popularity = algo2(@locations,@selected_cuisine)
     @res.each do |key, arr|
       sum = 0
 
@@ -42,32 +63,61 @@ class PagesController < ApplicationController
 
       avg = sum/8
       @location_costs[key] = avg
-      @location_popularity[key] = rand(40) + 50
+          #rand(40) + 50
 
 
     end
 
   end
+
+
 
   def algorithm(locations,cuisine)
     rests = {}
     locations.each do |each_loc|
       rest_in_loc = []
       selected_rest = Restaurant.where("location == '"+each_loc+ "' and cuisines like '%"+cuisine+"%'").limit(8).each do |x|
-        puts x.name
         rest_in_loc.append x.name
         end
 
       rests[each_loc] = rest_in_loc
     end
-
-    puts rests
     return rests
   end
+
+
+  def algo2(locations,cuisine)
+
+    rests = {}
+    max_val = 0.0
+    locations.each do |each_loc|
+      tot_rating = 0.0
+      count = 0
+      selected_rest = Restaurant.where("location == '"+each_loc+ "' and cuisines like '%"+cuisine+"%'").limit(8).each do |x|
+
+        tot_rating += x.rating.to_i
+      end
+
+
+      rests[each_loc] = (tot_rating/8)
+      if rests[each_loc] > max_val
+        max_val = rests[each_loc]
+      end
+
+      puts each_loc + " ---> " + rests[each_loc].to_s
+    end
+
+    rests.each do |key, val|
+      rests[key] = ( rests[key] / max_val ) * 100
+    end
+    return rests
 end
 
 
-def get_score
+
+
+
+def get_score(locations,cuisine)
     base_score = 100
     ret_cost=[]
     ret_loc = []
@@ -128,9 +178,7 @@ def get_score
     end
 
 end
-
-
-
+  end
 
 
 
