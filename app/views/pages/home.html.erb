@@ -23,7 +23,7 @@
       <% end %>
     </div>
 
-    <center><h2>Locations</h2></center>
+    <center><h2>Locations in Bangalore</h2></center>
     <div id="cols" class="well">
       <%= Location.find_each do |a|%>
           <font size="4" ><%= check_box_tag a.loc_name, a.loc_name %> <%= a.loc_name%></font> </br>
